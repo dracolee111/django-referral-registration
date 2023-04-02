@@ -1,0 +1,20 @@
+{
+    "name": "Clarion-Trades",
+    "short_name": "Clarion-Trades",
+    "icons": [
+      {
+        "src": "/static/assets/img/icon-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/",
+    "id": "/",
+    "background_color": "#212121",
+    "theme_color": "#212121",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "splash_pages": null
+  }
+  

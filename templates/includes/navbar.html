@@ -1,0 +1,59 @@
+    <nav class="navbar navbar-dark pt-4">
+         <div class="d-flex align-items-right">
+             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Menu" aria-controls="Menu" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+         </div>
+         <div class="navbar-brand">
+             <a href="/">
+                 <img src="/static/assets/img/django-logo.svg" alt="logo">
+             </a>
+     </nav>
+     <nav id="Menu" class="navbar-collapsed bg-dark collapse">
+         <ul class="nav flex-column pt-3 pt-md-0">
+             <li class="nav-button">
+               <a href="/" class="nav-button d-flex align-items-center">
+                 <p class="btn btn-outline-gray-800 animate-up-4">Home</p>
+               </a>
+             </li>
+         </ul>
+         {% if user.is_authenticated %}
+         <div class="container mb-4 card card-header shadow-sm">
+             <ul class="nav flex-column pt-3 pt-md-0">
+                 <li class="nav-item">
+                   <a href="{% url 'logout' %}" class="nav-link d-flex align-items-center">
+                     <p class="btn btn-outline-danger animate-up-4">Logout</p>
+                   </a>
+                 </li>
+             </ul>
+         </div>
+         {% else %}
+         <div class="container mb-4 card card-header shadow-sm">
+             <ul class="nav flex-column pt-3 pt-md-0">
+                 <li class="nav-item">
+                   <a href="{% url 'register' %}" class="nav-link d-flex align-items-center">
+                     <p class="btn btn-gray-800">Join Us</p>
+                   </a>
+                 </li>
+             </ul>
+             <ul class="nav flex-column pt-3 pt-md-0">
+                 <li class="nav-item">
+                   <a href="{% url 'login' %}" class="nav-link d-flex align-items-center">
+                     <p class="btn btn-outline-success animate-up-4">Login</p>
+                   </a>
+                 </li>
+             </ul>
+         </div>
+         {% endif %}
+         <br>
+         <br>
+         <div class="container mb-4 card card-header shadow-sm">
+             <ul class="nav flex-column pt-3 pt-md-0">
+                 <li class="nav-item">
+                   <a href="" class="nav-link d-flex align-items-center">
+                     <p class="btn btn-outline-success animate-up-4">Other items can go here</p>
+                   </a>
+                 </li>
+             </ul>
+         </div>
+     </nav> 
