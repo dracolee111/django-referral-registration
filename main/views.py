@@ -3,6 +3,7 @@ from django.urls import reverse
 from django import template
 from django.template import loader
 from django.contrib.auth.decorators import login_required
+from accounts.models import referral_program
 
 # Create your views here.
 ## view for displaying the homepage 'index.html'
@@ -16,8 +17,9 @@ def index(request):
 @login_required()
 def pages(request):
     user = request.user
-    context = {}
-    # All resource paths end in .html.
+    referrals = referral_program.objects.filter(user=user).order_by('date') ## add other models you want to be displayed in this app in this format
+    context = {'referrals': referrals} # also add them to this context in this format
+
     # Pick out the html file name from the url. And load that template.
     try:
 

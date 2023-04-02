@@ -24,7 +24,8 @@ def login_view(request):
     defined in ``settings.py``
     """
     msg = None
-    next_url = request.GET.get('next', '/')
+    user = request.user
+    next_url = request.GET.get('next')
         
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -35,12 +36,16 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('profile.html')
+                if next_url:
+                    return redirect(next_url)
+                else:
+                    return redirect('profile.html')
             else:
                 msg = 'Invalid credentials'
     else:
         form = LoginForm()
-
+        if user.is_authenticated:
+            return redirect('profile.html')
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
@@ -57,7 +62,7 @@ def register_user(request):
          * sends activation link if needed using the ``send_activation_code()`` function.
     """
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('profile.html')
     msg = None
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -97,7 +102,7 @@ def register_user(request):
                 to=[email],
                 from_email='help@example.com'
                 )
-            email.send(fail_silently=True)
+            email.send()
 
 
             # If user was referred, create referral field

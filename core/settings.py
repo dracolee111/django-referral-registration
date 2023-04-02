@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-
 # DIRS
 BASE_DIR = Path(__file__).resolve().parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,7 +10,7 @@ TEMPLATE_DIR = os.path.join(CORE_DIR, "templates")
 WSGI_APPLICATION = 'core.wsgi.application'
 
 ### VARIABLES
-SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-t(&6yf8n0-%h14unlfq8f#6%3#tor)o8em3z6og0p!m4)lfkli')
+SECRET_KEY = os.getenv('SECRET_KEY', default='$EKR!T_Ce?')
 DEBUG = os.getenv('DEBUG', default=True)
 ALLOWED_HOSTS = os.getenv('HOSTS', default=['*'])
 
@@ -87,7 +86,6 @@ else:
 
 
 #### AUTHENTICATION
-
 AUTH_USER_MODEL = 'accounts.User'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 LOGIN_REDIRECT_URL = 'profile.html'
@@ -107,10 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -129,11 +123,17 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'static'),
 )
-SITE_NAME = os.getenv("SITE_NAME", default='clarion-trades.com')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+SITE_NAME = os.getenv("SITE_NAME")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_COOKIE_AGE	= 86400
+CSRF_COOKIE_AGE	= 86400 #2 days
+
+### EMAILS
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend' ## use '...backends.smtp.EmailBackend' to send real emails after defining the variables in .env
+EMAIL_FILE_PATH = os.path.join(CORE_DIR, 'sent_emails')
+EMAIL_HOST = os.getenv('EMAIL_HOST', default='127.0.0.1')
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", default='user')
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", default='pa$$word')
+EMAIL_PORT = os.getenv("EMAIL_PORT", default='5432')
+
