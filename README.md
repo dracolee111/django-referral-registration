@@ -31,7 +31,7 @@ It can be used as a starting point for all your account related projects.
 <br><br>
 <center><u><b>Thanks</b></u></center>
 
-
+<center>
 
        _________     __                ___           __________        __    __
       |   ___   |   |  |              /   \         |   _______|      |  |  /  /
@@ -40,3 +40,5 @@ It can be used as a starting point for all your account related projects.
       |   ___  \    |  |           /  _____  \      |   |             |  | \  \
       |  |___|  |   |  |_______   /  /     \  \     |   |________     |  |  \  \
       |_________|   |__________| /__/       \__\    |____________|    |__|   \__\
+
+</center>
